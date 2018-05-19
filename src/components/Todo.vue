@@ -1,13 +1,8 @@
-<template>
-  <div class="todo">
-    <h1>TodoList</h1>
-    <li v-for="item in items">
-      <label v-bind:class="{ done: item.isChecked }">
-        {{ item.title }}
-      </label>
-    </li>
-    <todo-form></todo-form>
-  </div>
+<template lang="pug">
+  .todo
+    h1 TodoList
+    todo-list(v-for="item in items")  
+    todo-form
 </template>
 
 <script>
