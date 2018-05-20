@@ -2,13 +2,8 @@
   .todo-list
     | {{ item.title }}
     | {{ item.limit }}
-    el-button(@click="dialogVisible = true" type="primary" round)
+    el-button(@click="deleteConfirm(item.id)" type="primary" round)
       | delete
-    el-dialog(title="Tips" :visible.sync="dialogVisible" width="30%")
-      span Are you sure?
-      span.dialog-footer(slot="footer")
-      el-button(@click="dialogVisible = false") Cancel
-      el-button(type="primary" @click="deleteItem(item.id)") Delete
 </template>
 
 <script>
@@ -23,6 +18,19 @@ export default {
     }
   },
   methods: {
+    deleteConfirm: function (id) {
+      this.$confirm('This will permanently delete the item. Continue?', 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        this.deleteItem(id)
+        this.$message({
+          type: 'success',
+          message: 'Delete completed'
+        })
+      })
+    },
     deleteItem: function (id) {
       this.$emit('delete-item', id)
       this.dialogVisible = false
