@@ -1,12 +1,13 @@
 <template lang="pug">
   .todo
-    h1 TodoList
-    todo-list(v-for="item in items")  
+    h1 TodoList  
+    todo-list(v-for="item in items" :item="item")
     todo-form
 </template>
 
 <script>
 import TodoForm from './TodoForm'
+import TodoList from './TodoList'
 export default {
   name: 'todo',
   data () {
@@ -22,7 +23,8 @@ export default {
     }
   },
   components: {
-    TodoForm
+    TodoForm,
+    TodoList
   }
 }
 </script>
