@@ -21,6 +21,7 @@ export default {
         title: createTitle,
         limit: createLimit
       })
+      this.createTitle = ''
     }
   }
 }
