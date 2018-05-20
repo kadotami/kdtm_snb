@@ -1,8 +1,8 @@
 <template lang="pug">
   .todo
     h1 TodoList  
-    todo-list(v-for="item in items" :item="item")
-    todo-form
+    todo-list(@delete-item="deleteItem" v-for="item in items" :item="item" :key="item.id")
+    todo-form(@create-item="createItem")
 </template>
 
 <script>
@@ -13,18 +13,32 @@ export default {
   data () {
     return {
       items: [
-        { title: '領収書を準備する', isChecked: true },
-        { title: 'Vue.jsハンズオンの資料を作る', isChecked: true },
-        { title: '参加者の人数を確認する', isChecked: false },
-        { title: 'ピザを注文する', isChecked: false },
-        { title: '参加費のお釣りを準備する', isChecked: false },
-        { title: '会場設営をする', isChecked: false }
+        { id: 1, title: '領収書を準備する', limit: '2018-08-01' },
+        { id: 2, title: 'Vue.jsハンズオンの資料を作る', limit: '2018-08-01' },
+        { id: 3, title: '参加者の人数を確認する', limit: '2018-08-01' },
+        { id: 4, title: 'ピザを注文する', limit: '2018-08-01' },
+        { id: 5, title: '参加費のお釣りを準備する', limit: '2018-08-01' },
+        { id: 6, title: '会場設営をする', limit: '2018-08-01' }
       ]
     }
   },
   components: {
     TodoForm,
     TodoList
+  },
+  methods: {
+    createItem: function (item) {
+      this.items.push(item)
+    },
+    deleteItem: function (id) {
+      let target = 0
+      this.items.filter(function (item, index) {
+        if (item.id === id) {
+          target = index
+        }
+      })
+      this.items.splice(target, 1)
+    }
   }
 }
 </script>

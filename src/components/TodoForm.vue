@@ -1,7 +1,7 @@
 <template lang='pug'>
   .todo-form
     el-input(placeholder="Title" v-model="createTitle")
-    el-date-picker(type="date" v-model="createLimit")
+    el-date-picker(type="datetime" v-model="createLimit" placeholder="limit")
     el-button(@click="create(createTitle,createLimit)" type="primary" round)
       | create
 </template>
@@ -17,11 +17,15 @@ export default {
   },
   methods: {
     create: function (createTitle, createLimit) {
-      this.$parent.items.push({
-        title: createTitle,
-        limit: createLimit
-      })
-      this.createTitle = ''
+      if (createTitle !== '' && createLimit !== '') {
+        const obj = {
+          title: createTitle,
+          limit: createLimit
+        }
+        this.$emit('create-item', obj)
+        this.createTitle = ''
+        this.createLimit = ''
+      }
     }
   }
 }
