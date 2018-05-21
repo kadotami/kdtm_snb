@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 export default {
@@ -26,7 +27,19 @@ export default {
     TodoForm,
     TodoList
   },
+  mounted: function () {
+    this.getItems()
+  },
   methods: {
+    getItems: function () {
+      axios.get(process.env.API_URI + '/todos')
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    },
     createItem: function (item) {
       this.items.push(item)
     },
