@@ -31,12 +31,12 @@ export default {
     this.getItems()
   },
   methods: {
-    getItems: function () {
+    getItems () {
       axios.get(process.env.API_URI + '/todos')
-        .then(function (response) {
-          console.log(response)
+        .then((response) => {
+          this.items = response.data
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error)
         })
     },
