@@ -40,10 +40,10 @@ export default {
           console.log(error)
         })
     },
-    createItem: function (item) {
+    createItem (item) {
       this.items.push(item)
     },
-    deleteItem: function (id) {
+    deleteItem (id) {
       let target = 0
       this.items.filter(function (item, index) {
         if (item.id === id) {

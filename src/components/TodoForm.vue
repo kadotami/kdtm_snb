@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'todo-form',
   data () {
@@ -18,13 +19,18 @@ export default {
   methods: {
     create: function (createTitle, createLimit) {
       if (createTitle !== '' && createLimit !== '') {
-        const obj = {
-          title: createTitle,
-          limit: createLimit
-        }
-        this.$emit('create-item', obj)
-        this.createTitle = ''
-        this.createLimit = ''
+        axios.post(process.env.API_URI + '/todos', {
+          todo: {
+            title: this.createTitle,
+            limit: this.createLimit
+          }
+        }).then(function (response) {
+          this.$emit('create-item', response.data)
+          this.createTitle = ''
+          this.createLimit = ''
+        }).catch(function (error) {
+          console.log(error)
+        })
       }
     }
   }
