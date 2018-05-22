@@ -17,18 +17,18 @@ export default {
     }
   },
   methods: {
-    create: function (createTitle, createLimit) {
+    create (createTitle, createLimit) {
       if (createTitle !== '' && createLimit !== '') {
         axios.post(process.env.API_URI + '/todos', {
           todo: {
             title: this.createTitle,
             limit: this.createLimit
           }
-        }).then(function (response) {
+        }).then((response) => {
           this.$emit('create-item', response.data)
           this.createTitle = ''
           this.createLimit = ''
-        }).catch(function (error) {
+        }).catch((error) => {
           console.log(error)
         })
       }

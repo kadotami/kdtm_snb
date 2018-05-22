@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'todo-list',
   props: {
@@ -18,20 +19,28 @@ export default {
     }
   },
   methods: {
-    deleteConfirm: function (id) {
+    deleteConfirm (id) {
       this.$confirm('This will permanently delete the item. Continue?', 'Warning', {
         confirmButtonText: 'OK',
         cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
         this.deleteItem(id)
+      })
+    },
+    deleteItem (id) {
+      axios.delete(process.env.API_URI + '/todos/' + id, {
+      }).then((response) => {
+        this.deleteEmit(id)
         this.$message({
           type: 'success',
           message: 'Delete completed'
         })
+      }).catch((error) => {
+        console.log(error)
       })
     },
-    deleteItem: function (id) {
+    deleteEmit (id) {
       this.$emit('delete-item', id)
       this.dialogVisible = false
     }
