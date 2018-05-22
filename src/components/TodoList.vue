@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { deleteTodo } from '../utils/todos-api'
 export default {
   name: 'todo-list',
   props: {
@@ -29,8 +29,7 @@ export default {
       })
     },
     deleteItem (id) {
-      axios.delete(process.env.API_URI + '/todos/' + id, {
-      }).then((response) => {
+      deleteTodo(id).then((response) => {
         this.deleteEmit(id)
         this.$message({
           type: 'success',

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { getTodo } from '../utils/todos-api'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 export default {
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     getItems () {
-      axios.get(process.env.API_URI + '/todos')
+      getTodo()
         .then((response) => {
           this.items = response.data
         })
