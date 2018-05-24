@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import Signup from '@/components/Signup'
 import Signin from '@/components/Signin'
 import Todo from '@/components/Todo'
+import AccountBook from '@/components/AccountBook'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/todo',
       name: 'Todo',
       component: Todo
+    },
+    {
+      path: '/account-book',
+      name: 'AccountBook',
+      component: AccountBook
     }
   ]
 })
