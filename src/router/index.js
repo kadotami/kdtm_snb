@@ -13,7 +13,8 @@ export default new Router({
     {
       path: '/',
       name: 'Hello',
-      component: Hello
+      component: Hello,
+      meta: {requiresAuth: true}
     },
     {
       path: '/signup',
@@ -28,12 +29,14 @@ export default new Router({
     {
       path: '/todo',
       name: 'Todo',
-      component: Todo
+      component: Todo,
+      meta: {requiresAuth: true}
     },
     {
       path: '/account-book',
       name: 'AccountBook',
-      component: AccountBook
+      component: AccountBook,
+      meta: {requiresAuth: true}
     }
   ]
 })

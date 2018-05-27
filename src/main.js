@@ -9,6 +9,15 @@ import router from './router'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 
+router.beforeEach((to, from, next) => {
+  console.log(to.matched.some(record => record.meta.requiresAuth))
+  if (to.matched.some(record => record.meta.requiresAuth) && !localStorage.getItem('kdtm_token')) {
+    next({path: '/signin', query: { redirect: to.fullPath }})
+  } else {
+    next()
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
