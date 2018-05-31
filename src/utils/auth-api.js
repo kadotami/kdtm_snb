@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = `${process.env.API_URI}/todos`
+const BASE_URL = `${process.env.API_URI}/users`
 
 export function login (obj) {
   const url = `${BASE_URL}`
