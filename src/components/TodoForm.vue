@@ -2,7 +2,7 @@
   .todo-form
     el-input(placeholder="Title" v-model="createTitle")
     el-date-picker(type="datetime" v-model="createLimit" placeholder="limit")
-    el-button(@click="create(createTitle,createLimit)" type="primary" round)
+    el-button(@click="create()" type="primary" round)
       | create
 </template>
 
@@ -17,8 +17,8 @@ export default {
     }
   },
   methods: {
-    create (createTitle, createLimit) {
-      if (createTitle !== '' && createLimit !== '') {
+    create () {
+      if (this.createTitle !== '' && this.createLimit !== '') {
         createTodo({
           todo: {
             title: this.createTitle,

@@ -10,6 +10,7 @@
 
 <script>
 import { signinApi } from '../utils/users-api'
+import router from '../router'
 export default {
   name: 'signin',
   data () {
@@ -26,9 +27,15 @@ export default {
       }
       signinApi(obj)
         .then((responce) => {
-          console.log(responce)
+          console.log(responce.token)
+          localStorage.setItem('kdtm_token', responce.token)
+          router.push(this.$route.query.redirect)
         }).catch((error) => {
-          console.log(error)
+          console.log(error.response.status)
+          this.$message({
+            type: 'error',
+            message: 'password or email is not correct'
+          })
         })
     }
   }
