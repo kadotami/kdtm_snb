@@ -5,18 +5,23 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router'
+import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 
 router.beforeEach((to, from, next) => {
-  console.log(to.matched.some(record => record.meta.requiresAuth))
   if (to.matched.some(record => record.meta.requiresAuth) && !localStorage.getItem('kdtm_token')) {
     next({path: '/signin', query: { redirect: to.fullPath }})
   } else {
     next()
   }
 })
+
+const token = localStorage.getItem('kdtm_token')
+if (token) {
+  axios.defaults.headers.common['Authorization'] = token
+}
 
 /* eslint-disable no-new */
 new Vue({
