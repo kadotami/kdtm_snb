@@ -29,7 +29,11 @@ export default {
         .then((responce) => {
           console.log(responce.token)
           localStorage.setItem('kdtm_token', responce.token)
-          router.push(this.$route.query.redirect)
+          if (this.$route.query.redirect) {
+            router.push(this.$route.query.redirect)
+          } else {
+            router.push('')
+          }
         }).catch((error) => {
           console.log(error.response.status)
           this.$message({

@@ -10,8 +10,21 @@
 </template>
 
 <script>
+import axios from 'axios'
+import router from './router'
 export default {
-  name: 'app'
+  name: 'app',
+  created: function () {
+    axios.interceptors.response.use(undefined, function (err) {
+      return new Promise(function (resolve, reject) {
+        if (err.response.status === 401) {
+          localStorage.removeItem('kdtm_token')
+          router.push('signin')
+        }
+        throw err
+      })
+    })
+  }
 }
 </script>
 
