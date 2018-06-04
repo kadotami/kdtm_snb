@@ -32,7 +32,7 @@ export default {
           if (this.$route.query.redirect) {
             router.push(this.$route.query.redirect)
           } else {
-            router.push('')
+            router.push('Hello')
           }
         }).catch((error) => {
           console.log(error.response.status)

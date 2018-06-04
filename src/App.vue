@@ -14,6 +14,11 @@ import axios from 'axios'
 import router from './router'
 export default {
   name: 'app',
+  data () {
+    return {
+      isLogin: false
+    }
+  },
   created: function () {
     axios.interceptors.response.use(undefined, function (err) {
       return new Promise(function (resolve, reject) {

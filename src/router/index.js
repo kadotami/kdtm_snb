@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Signup from '@/components/Signup'
 import Signin from '@/components/Signin'
+import Signout from '@/components/Signout'
 import Todo from '@/components/Todo'
 import AccountBook from '@/components/AccountBook'
 
@@ -25,6 +26,11 @@ export default new Router({
       path: '/signin',
       name: 'Signin',
       component: Signin
+    },
+    {
+      path: '/signout',
+      name: 'Signout',
+      component: Signout
     },
     {
       path: '/todo',
