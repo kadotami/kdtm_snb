@@ -2,6 +2,8 @@
   <div id="app">
     <header>
       <span>kdtm snb</span>
+      <router-link v-bind:to="{ name : 'Signin'}">Signin</router-link>
+      <router-link v-bind:to="{ name : 'Signout'}">Signout</router-link>
     </header>
     <main>
       <router-view></router-view>

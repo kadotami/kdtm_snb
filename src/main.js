@@ -20,7 +20,10 @@ router.beforeEach((to, from, next) => {
 
 const token = localStorage.getItem('kdtm_token')
 if (token) {
-  axios.defaults.headers.common['Authorization'] = token
+  axios.interceptors.request.use((config) => {
+    config.headers.Authorization = `${token}`
+    return config
+  })
 }
 
 /* eslint-disable no-new */

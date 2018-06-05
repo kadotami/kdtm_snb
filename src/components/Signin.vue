@@ -27,7 +27,6 @@ export default {
       }
       signinApi(obj)
         .then((responce) => {
-          console.log(responce.token)
           localStorage.setItem('kdtm_token', responce.token)
           if (this.$route.query.redirect) {
             router.push(this.$route.query.redirect)
