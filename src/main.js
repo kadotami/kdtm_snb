@@ -18,13 +18,13 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-const token = localStorage.getItem('kdtm_token')
-if (token) {
-  axios.interceptors.request.use((config) => {
+axios.interceptors.request.use((config) => {
+  const token = localStorage.getItem('kdtm_token')
+  if (token) {
     config.headers.Authorization = `${token}`
-    return config
-  })
-}
+  }
+  return config
+})
 
 /* eslint-disable no-new */
 new Vue({
