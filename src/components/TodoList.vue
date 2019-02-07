@@ -1,7 +1,7 @@
 <template lang='pug'>
   .todo-list
-    | {{ item.title }}
-    | {{ item.limit }}
+    span.title {{ item.title }}
+    span.limit {{ item.limit }}
     el-button(@click="deleteConfirm(item.id)" type="primary" round)
       | delete
 </template>
